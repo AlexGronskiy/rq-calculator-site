@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RQ Calculator</title>
+
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="shortcut icon" type="image/png" href="assets/logo.png">
+    <link rel="apple-touch-icon" href="assets/logo.png">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page">
+        <header class="site-header">
+            <div class="site-container">
+                <div class="hero">
+                    <div class="logo-block">
+                        <a
+                            class="logo-link"
+                            href="https://t.me/rq_calc_devblog"
+                            target="_blank"
+                            rel="noopener"
+                            aria-label="Открыть Telegram-канал RQ Calculator"
+                        >
+                            <img src="assets/logo.png" alt="RQ Calculator" class="site-logo">
+                        </a>
+                    </div>
+                </div>
+
+                <nav class="main-nav">
+                    <ul class="nav-social">
+                        <li>
+                            <a href="https://t.me/rq_calc_devblog" target="_blank" rel="noopener" aria-label="Telegram">
+                                <img src="assets/tg.png" alt="Telegram">
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://discord.gg/jcMyjTnpHA" target="_blank" rel="noopener" aria-label="Discord">
+                                <img src="assets/ds.png" alt="Discord">
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="nav-links">
+                        <a href="#about" aria-label="О проекте">
+                            <img src="assets/nav-about.png" alt="О проекте">
+                        </a>
+
+                        <a href="#features" aria-label="Возможности">
+                            <img src="assets/nav-possibilities.png" alt="Возможности">
+                        </a>
+
+                        <a href="#download" aria-label="Скачать">
+                            <img src="assets/nav-download.png" alt="Скачать">
+                        </a>
+
+                        <a href="#donate" aria-label="Поддержать проект">
+                            <img src="assets/nav-donate.png" alt="Поддержать проект">
+                        </a>
+
+                        <a href="#contacts" aria-label="Контакты">
+                            <img src="assets/nav-contacts.png" alt="Контакты">
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main class="site-container content-layout">
+            <div class="content-column">
+                <section class="paper-panel" id="about">
+                    <h2>О проекте</h2>
+
+                    <div class="panel-body">
+                        <p>
+                            <strong>RQ Calculator</strong> — фанатский калькулятор персонажа для Royal Quest,
+                            созданный игроком SilverDeath. Проект разрабатывается как удобное ПК-приложение
+                            для сборки, сравнения и анализа персонажей.
+                        </p>
+
+                        <p>
+                            В основе калькулятора лежит переработанная база данных старого калькулятора,
+                            дополненная новой логикой, интерфейсом и расчётами. Проект постепенно развивается
+                            и в дальнейшем должен стать не только калькулятором, но и общей базой знаний
+                            по Royal Quest.
+                        </p>
+
+                        <p>
+                            Если вы нашли ошибку, неточность в расчётах или хотите предложить улучшение —
+                            сообщить об этом можно через меню калькулятора или напрямую разработчику.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="paper-panel" id="features">
+                    <h2>Возможности</h2>
+
+                    <div class="panel-body">
+                        <ul class="feature-list">
+                            <li>Создание персонажа с выбором уровня, класса, специализации и пола</li>
+                            <li>Подбор экипировки с учётом уровня, класса и доступных ограничений</li>
+                            <li>Работа с картами, печатями, улучшениями и временными усилениями</li>
+                            <li>Инвентарь для сравнения предметов и хранения альтернативной экипировки</li>
+                            <li>Сохранение и загрузка готовых сборок персонажа</li>
+                            <li>Расчёт основных характеристик, дополнительной статистики, DPS и EHP</li>
+                            <li>Конструктор цели для оценки урона и выживаемости против разных существ</li>
+                            <li>Развитие проекта вместе с сообществом игроков Royal Quest</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+            <aside class="side-column">
+                <section class="side-panel" id="donate">
+                    <h2>Поддержать проект</h2>
+
+                    <div class="panel-body donate-box">
+                        <p>
+                            Если проект оказался полезен, можно поддержать дальнейшую разработку.
+                        </p>
+
+                        <p>
+                            Так же, благодарность можно отправить игровой почтой на ник SilverDeath
+                            одинаковое имя на всех серверах.
+                        </p>
+
+                        <div class="copy-toast" id="copyToast" aria-live="polite">
+                            <span class="copy-toast-icon">✓</span>
+                            <span class="copy-toast-text">Скопировано</span>
+                        </div>
+
+                        <div class="crypto-accordion">
+                            <details class="crypto-item" name="crypto-donate">
+                                <summary class="crypto-summary">
+                                    <span class="crypto-summary-main">
+                                        <span class="crypto-icon-stack">
+                                            <img class="crypto-icon-main" src="assets/usdt/usdt.png" alt="">
+                                            <img class="crypto-icon-badge" src="assets/eth/eth.png" alt="">
+                                        </span>
+
+                                        <span>USDT <small>ERC20</small></span>
+                                    </span>
+
+                                    <span class="crypto-arrow">⌄</span>
+                                </summary>
+
+                                <div class="crypto-content">
+                                    <div class="qr-box">
+                                        <img
+                                            class="crypto-qr"
+                                            src="assets/eth/usdt-erc20-qr.png"
+                                            alt="QR-код USDT ERC20"
+                                        >
+                                    </div>
+
+                                    <div class="crypto-meta">
+                                        <div><strong>Токен:</strong> USDT</div>
+                                        <div><strong>Сеть:</strong> ERC20 / Ethereum</div>
+                                    </div>
+
+                                    <div class="address-box">
+                                        <button
+                                            class="copy-address-btn"
+                                            type="button"
+                                            onclick="copyCryptoAddress(this)"
+                                            data-address="0x5a7fa9b696e24ae285c75b49b537d4f2a6fb9c38"
+                                        >
+                                            <span>0x5a7fa9b696e24ae285c75b49b537d4f2a6fb9c38</span>
+
+                                            <svg class="copy-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                                <rect x="9" y="9" width="10" height="10" rx="2"></rect>
+                                                <path d="M5 15V7a2 2 0 0 1 2-2h8"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <div class="warning">
+                                        Отправляйте только USDT в сети ERC20 / Ethereum.
+                                        Переводы через другие сети могут быть потеряны.
+                                    </div>
+                                </div>
+                            </details>
+
+                            <details class="crypto-item" name="crypto-donate">
+                                <summary class="crypto-summary">
+                                    <span class="crypto-summary-main">
+                                        <span class="crypto-icon-stack">
+                                            <img class="crypto-icon-main" src="assets/usdt/usdt.png" alt="">
+                                            <img class="crypto-icon-badge" src="assets/bnb/bnb.png" alt="">
+                                        </span>
+
+                                        <span>USDT <small>BEP20</small></span>
+                                    </span>
+
+                                    <span class="crypto-arrow">⌄</span>
+                                </summary>
+
+                                <div class="crypto-content">
+                                    <div class="qr-box">
+                                        <img
+                                            class="crypto-qr"
+                                            src="assets/bnb/usdt-bep20-qr.png"
+                                            alt="QR-код USDT BEP20"
+                                        >
+                                    </div>
+
+                                    <div class="crypto-meta">
+                                        <div><strong>Токен:</strong> USDT</div>
+                                        <div><strong>Сеть:</strong> BEP20 / BNB Smart Chain</div>
+                                    </div>
+
+                                    <div class="address-box">
+                                        <button
+                                            class="copy-address-btn"
+                                            type="button"
+                                            onclick="copyCryptoAddress(this)"
+                                            data-address="0x5a7fa9b696e24ae285c75b49b537d4f2a6fb9c38"
+                                        >
+                                            <span>0x5a7fa9b696e24ae285c75b49b537d4f2a6fb9c38</span>
+
+                                            <svg class="copy-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                                <rect x="9" y="9" width="10" height="10" rx="2"></rect>
+                                                <path d="M5 15V7a2 2 0 0 1 2-2h8"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <div class="warning">
+                                        Отправляйте только USDT в сети BEP20 / BNB Smart Chain.
+                                        Переводы через другие сети могут быть потеряны.
+                                    </div>
+                                </div>
+                            </details>
+
+                            <details class="crypto-item" name="crypto-donate">
+                                <summary class="crypto-summary">
+                                    <span class="crypto-summary-main">
+                                        <span class="crypto-icon-stack">
+                                            <img class="crypto-icon-main" src="assets/usdt/usdt.png" alt="">
+                                            <img class="crypto-icon-badge" src="assets/trx/trx.png" alt="">
+                                        </span>
+
+                                        <span>USDT <small>Tron</small></span>
+                                    </span>
+
+                                    <span class="crypto-arrow">⌄</span>
+                                </summary>
+
+                                <div class="crypto-content">
+                                    <div class="qr-box">
+                                        <img
+                                            class="crypto-qr"
+                                            src="assets/trx/usdt-trx-qr.png"
+                                            alt="QR-код USDT Tron"
+                                        >
+                                    </div>
+
+                                    <div class="crypto-meta">
+                                        <div><strong>Токен:</strong> USDT</div>
+                                        <div><strong>Сеть:</strong> TRC20 / Tron</div>
+                                    </div>
+
+                                    <div class="address-box">
+                                        <button
+                                            class="copy-address-btn"
+                                            type="button"
+                                            onclick="copyCryptoAddress(this)"
+                                            data-address="TTr5kDrSVNMaUrQGuLYofiidhDWypgHVxL"
+                                        >
+                                            <span>TTr5kDrSVNMaUrQGuLYofiidhDWypgHVxL</span>
+
+                                            <svg class="copy-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                                <rect x="9" y="9" width="10" height="10" rx="2"></rect>
+                                                <path d="M5 15V7a2 2 0 0 1 2-2h8"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <div class="warning">
+                                        Отправляйте только USDT в сети TRC20 / Tron.
+                                        Переводы через другие сети могут быть потеряны.
+                                    </div>
+                                </div>
+                            </details>
+
+                            <details class="crypto-item" name="crypto-donate">
+                                <summary class="crypto-summary">
+                                    <span class="crypto-summary-main">
+                                        <span class="crypto-icon-stack">
+                                            <img class="crypto-icon-main" src="assets/usdt/usdt.png" alt="">
+                                            <img class="crypto-icon-badge" src="assets/solana/solana.png" alt="">
+                                        </span>
+
+                                        <span>USDT <small>Solana</small></span>
+                                    </span>
+
+                                    <span class="crypto-arrow">⌄</span>
+                                </summary>
+
+                                <div class="crypto-content">
+                                    <div class="qr-box">
+                                        <img
+                                            class="crypto-qr"
+                                            src="assets/solana/usdt-solana-qr.png"
+                                            alt="QR-код USDT Solana"
+                                        >
+                                    </div>
+
+                                    <div class="crypto-meta">
+                                        <div><strong>Токен:</strong> USDT</div>
+                                        <div><strong>Сеть:</strong> Solana</div>
+                                    </div>
+
+                                    <div class="address-box">
+                                        <button
+                                            class="copy-address-btn"
+                                            type="button"
+                                            onclick="copyCryptoAddress(this)"
+                                            data-address="GEi5e6oBddQGDJsPdMQXzTxi1Nq3MS6Y6d7bCaTeoWre"
+                                        >
+                                            <span>GEi5e6oBddQGDJsPdMQXzTxi1Nq3MS6Y6d7bCaTeoWre</span>
+
+                                            <svg class="copy-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                                <rect x="9" y="9" width="10" height="10" rx="2"></rect>
+                                                <path d="M5 15V7a2 2 0 0 1 2-2h8"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <div class="warning">
+                                        Отправляйте только USDT в сети Solana.
+                                        Переводы через другие сети могут быть потеряны.
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="download-side-block" id="download">
+                    <a class="download-image-button" href="#" target="_blank" rel="noopener" aria-label="Скачать RQ Calculator">
+                        <img src="assets/download_button.png" alt="Скачать">
+                    </a>
+                </div>
+
+                <section class="side-panel" id="contacts">
+                    <h2>Контакты</h2>
+
+                    <div class="panel-body">
+                        <ul class="contact-list">
+                            <li>
+                                <a href="https://t.me/rq_calc_devblog" target="_blank" rel="noopener">
+                                    Telegram
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="https://discord.gg/jcMyjTnpHA" target="_blank" rel="noopener">
+                                    Discord
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </aside>
+        </main>
+
+        <footer class="site-footer">
+            НЕ ЯВЛЯЕТСЯ ОФИЦИАЛЬНЫМ ПРОДУКТОМ Lesta Games. НЕ ОДОБРЕНО И НЕ СВЯЗАНО С КОМПАНИЕЙ Lesta Games. RQ Calculator © 2026
+        </footer>
+    </div>
+
+    <script>
+        function copyCryptoAddress(button) {
+            const toast = document.getElementById("copyToast");
+
+            if (!button) {
+                return;
+            }
+
+            const address = button.dataset.address || button.textContent.trim();
+
+            if (!address) {
+                return;
+            }
+
+            function showCopyToast(text, isError = false) {
+                if (!toast) {
+                    return;
+                }
+
+                const toastText = toast.querySelector(".copy-toast-text");
+
+                if (toastText) {
+                    toastText.textContent = text;
+                }
+
+                toast.classList.toggle("is-error", Boolean(isError));
+                toast.classList.remove("is-visible");
+
+                window.clearTimeout(window.__copyToastTimer);
+
+                requestAnimationFrame(() => {
+                    toast.classList.add("is-visible");
+                });
+
+                window.__copyToastTimer = window.setTimeout(() => {
+                    toast.classList.remove("is-visible");
+                }, 1600);
+            }
+
+            navigator.clipboard.writeText(address)
+                .then(() => {
+                    showCopyToast("Скопировано");
+                })
+                .catch(() => {
+                    showCopyToast("Не удалось скопировать", true);
+                });
+        }
+    </script>
+</body>
+</html>
