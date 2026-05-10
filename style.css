@@ -775,99 +775,486 @@ a {
 
 @media (max-width: 850px) {
     body {
+        background:
+            url("assets/main.png")
+            center top
+            / auto 100vh
+            no-repeat
+            fixed;
+
+        font-size: 14px;
+        line-height: 1.45;
+    }
+
+    .page {
+        --main-bord-height: 760px;
+        --main-bord-offset-y: -140px;
+
+        overflow-x: hidden;
+        padding-bottom: 28px;
+    }
+
+    .page::before {
+        background-size: auto 760px;
         background-position: center top;
-        background-attachment: scroll;
+    }
+
+    .page::after {
+        top: var(--main-bord-height);
+    }
+
+    .site-container,
+    .site-footer {
+        width: min(100% - 18px, var(--page-width));
     }
 
     .site-header {
         min-height: auto;
+        padding-top: 8px;
     }
 
+    /*
+        На телефоне логотип лучше не держать огромным fixed-слоем,
+        иначе он перекрывает меню и текст.
+    */
     .hero {
-        position: fixed;
-        top: 12px;
-        left: 12px;
+        position: relative;
+        top: auto;
+        left: auto;
 
-        min-height: 0;
-        display: block;
-        margin-bottom: 0;
+        width: 100%;
+        height: auto;
 
-        z-index: 999;
+        display: flex;
+        justify-content: center;
+
+        z-index: 2;
+        pointer-events: auto;
+
+        margin: 0 0 -6px;
+    }
+
+    .logo-block {
+        width: 132px;
+        padding: 0;
+        margin: 0;
     }
 
     .site-logo {
-        width: 180px;
+        width: 132px;
+        height: auto;
     }
 
-    .header-note {
-        width: 100%;
-    }
-
+    /*
+        nav.png на телефоне оставляем как декоративную подложку,
+        но делаем её выше, чтобы кнопки спокойно помещались.
+    */
     .main-nav {
+        width: 100%;
         height: auto;
-        min-height: 109px;
-        padding: 14px 18px 10px 18px;
-        flex-wrap: wrap;
-        background: url("assets/nav.png") center center / 100% 100% no-repeat;
-    }
+        min-height: 168px;
 
-    .nav-links {
-        left: 24px;
-        right: 24px;
-        bottom: 18px;
-        height: auto;
+        padding: 14px 16px 16px;
 
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 6px;
-    }
-
-    .nav-links a {
-        height: 30px;
-        flex: 1 1 30%;
-        max-width: 170px;
+        background:
+            url("assets/nav.png")
+            center center
+            / 100% 100%
+            no-repeat;
     }
 
     .nav-social {
-        top: 12px;
-        right: 18px;
+        position: relative;
+        top: auto;
+        right: auto;
+
+        justify-content: center;
+
+        margin: 0 auto 10px;
+        z-index: 5;
     }
 
+    .nav-social li,
+    .nav-social a {
+        width: 31px;
+        height: 31px;
+    }
+
+    /*
+        Картинки-кнопки навигации делаем сеткой 2 колонки.
+    */
+    .nav-links {
+        position: relative;
+        left: auto;
+        right: auto;
+        bottom: auto;
+
+        height: auto;
+
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px 8px;
+
+        width: min(100%, 360px);
+        margin: 0 auto;
+    }
+
+    .nav-links a {
+        width: 100%;
+        height: 31px;
+        max-width: none;
+        flex: none;
+    }
+
+    .nav-links a img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    /*
+        Основной контент на телефоне всегда одной колонкой.
+    */
     .content-layout {
+        display: grid;
         grid-template-columns: 1fr;
-        justify-items: center;
+        gap: 16px;
+
+        width: min(100% - 18px, 520px);
+        margin-top: 14px;
+
+        justify-items: stretch;
     }
 
     .content-column {
         width: 100%;
         min-width: 0;
+        gap: 16px;
     }
 
+    /*
+        Правая колонка с long.png становится обычным нижним блоком.
+    */
     .side-column {
-        width: min(346px, 100%);
+        width: 100%;
+        min-width: 0;
+
+        gap: 16px;
+        padding: 10px 12px 14px;
+
+        background:
+            url("assets/long.png")
+            center center
+            / 100% 100%
+            no-repeat;
+
+        border-radius: 22px;
+    }
+
+    .paper-panel,
+    .side-panel {
+        width: 100%;
+        min-width: 0;
+
+        padding: 8px 9px 11px;
+    }
+
+    .paper-panel::before,
+    .side-panel::before {
+        height: 34px;
+    }
+
+    .paper-panel h2,
+    .side-panel h2 {
+        top: 13px;
+        left: 24px;
+
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .side-column .side-panel h2 {
+        top: 5px;
+        left: 18px;
+    }
+
+    .panel-body {
+        padding: 17px 16px 18px;
+        font-size: 14px;
+    }
+
+    .feature-list {
+        margin-top: 8px;
+    }
+
+    .feature-list li {
+        padding: 6px 0 6px 18px;
+    }
+
+    .feature-list li::before {
+        top: 6px;
+    }
+
+    /*
+        Кнопку скачивания масштабируем под ширину телефона,
+        сохраняя спрайт с hover-частью.
+    */
+    .download-side-block {
+        min-height: 68px;
+        margin: -4px 0;
+        overflow: visible;
+    }
+
+    .download-image-button {
+        width: 268px;
+        height: 67px;
+
+        transform: none;
+        transform-origin: center center;
+    }
+
+    .download-image-button img {
+        width: 604px;
+        height: 67px;
+    }
+
+    .download-image-button:hover img,
+    .download-image-button:active img {
+        transform: translate(-335px, -1px);
+    }
+
+    /*
+        Донат-блок.
+    */
+    .donate-box {
+        gap: 12px;
+    }
+
+    .crypto-summary {
+        min-height: 44px;
+        padding: 7px 9px;
+    }
+
+    .crypto-icon-stack {
+        width: 32px;
+        height: 32px;
+    }
+
+    .crypto-icon-main {
+        width: 28px;
+        height: 28px;
+    }
+
+    .crypto-icon-badge {
+        width: 15px;
+        height: 15px;
+    }
+
+    .crypto-content {
+        padding: 12px 9px 11px;
+        gap: 10px;
+    }
+
+    .qr-box {
+        width: min(180px, 100%);
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+
+    .crypto-qr {
+        width: 100%;
+        height: 100%;
+    }
+
+    .copy-address-btn {
+        font-size: 12px;
+        line-height: 1.25;
+    }
+
+    .warning {
+        padding: 9px 10px;
+        font-size: 12px;
+    }
+
+    .copy-toast {
+        top: 46px;
+    }
+
+    .site-footer {
+        margin-top: 18px;
+        padding: 14px 8px;
+        font-size: 11px;
+        line-height: 1.35;
     }
 }
 
 @media (max-width: 520px) {
+    body {
+        background:
+            url("assets/main.png")
+            center top
+            / auto 100vh
+            no-repeat
+            fixed;
+    }
+
     .site-container,
     .site-footer {
-        width: min(100% - 20px, var(--page-width));
+        width: min(100% - 12px, var(--page-width));
     }
 
     .logo-block {
-        padding: 22px 20px;
+        width: 112px;
+        padding: 0;
+    }
+
+    .site-logo {
+        width: 112px;
+    }
+
+    .main-nav {
+        min-height: 186px;
+        padding: 12px 12px 15px;
+    }
+
+    .nav-links {
+        width: min(100%, 330px);
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    .nav-links a {
+        height: 28px;
+    }
+
+    .content-layout {
+        width: min(100% - 12px, 430px);
+        gap: 14px;
+        margin-top: 12px;
+    }
+
+    .content-column {
+        gap: 14px;
+    }
+
+    .side-column {
+        gap: 14px;
+        padding: 8px 10px 12px;
+        border-radius: 18px;
+    }
+
+    .paper-panel,
+    .side-panel {
+        padding: 7px 8px 10px;
+    }
+
+    .paper-panel::before,
+    .side-panel::before {
+        height: 32px;
+    }
+
+    .paper-panel h2,
+    .side-panel h2 {
+        top: 12px;
+        left: 21px;
+
+        font-size: 15px;
+        line-height: 18px;
+    }
+
+    .side-column .side-panel h2 {
+        top: 5px;
+        left: 17px;
     }
 
     .panel-body {
-        padding: 18px;
+        padding: 15px 13px 16px;
+        font-size: 13px;
     }
 
-    .download-card {
-        align-items: stretch;
+    .paper-panel p,
+    .side-panel p {
+        margin-bottom: 10px;
     }
 
-    .btn {
-        width: 100%;
+    .feature-list li {
+        padding-left: 17px;
+    }
+
+    .download-side-block {
+        min-height: 60px;
+    }
+
+    .download-image-button {
+        width: 238px;
+        height: 60px;
+    }
+
+    .download-image-button img {
+        width: 537px;
+        height: 60px;
+    }
+
+    .download-image-button:hover img,
+    .download-image-button:active img {
+        transform: translate(-298px, -1px);
+    }
+
+    .crypto-summary-main {
+        gap: 7px;
+        font-size: 13px;
+    }
+
+    .crypto-summary-main small {
+        font-size: 10px;
+    }
+
+    .crypto-arrow {
+        font-size: 17px;
+    }
+
+    .crypto-meta {
+        font-size: 12px;
+    }
+
+    .copy-address-btn {
+        font-size: 11px;
+    }
+
+    .copy-icon {
+        width: 13px;
+        height: 13px;
+    }
+
+    .contact-list li {
+        padding: 6px 0;
+    }
+
+    .copy-toast {
+        top: 42px;
+        padding: 9px 12px;
+        font-size: 13px;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .logo-link:hover,
+    .nav-links a:hover,
+    .btn:hover {
+        transform: none;
+        filter: none;
+    }
+
+    .nav-social a:hover img {
+        transform: translateY(0);
+    }
+
+    .download-image-button:hover img {
+        transform: translate(0, 0);
+    }
+
+    .download-image-button:active img {
+        filter: brightness(0.92);
     }
 }
 
