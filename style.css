@@ -56,6 +56,12 @@ a {
     --main-bord-height: 900px;
     --main-bord-offset-y: -200px;
 
+    /*
+        Насколько раньше начинается main-repeat.jpg.
+        Он будет заходить ПОД main_bord.png, поэтому шва не будет.
+    */
+    --main-repeat-overlap: 90px;
+
     min-height: 100vh;
     padding-bottom: 44px;
 
@@ -78,14 +84,24 @@ a {
         no-repeat;
 
     pointer-events: none;
-    z-index: 0;
+
+    /*
+        main_bord.png выше repeat-фона.
+    */
+    z-index: 1;
 }
 
 .page::after {
     content: "";
     position: absolute;
     left: 0;
-    top: var(--main-bord-height);
+
+    /*
+        Стартуем раньше, чтобы main-repeat.jpg заходил под main_bord.png.
+        Сам main_bord.png при этом НЕ двигается.
+    */
+    top: calc(var(--main-bord-height) - var(--main-repeat-overlap));
+
     width: 100%;
     bottom: 0;
 
@@ -95,6 +111,10 @@ a {
         repeat;
 
     pointer-events: none;
+
+    /*
+        repeat-фон ниже main_bord.png.
+    */
     z-index: 0;
 }
 
@@ -102,7 +122,11 @@ a {
 .content-layout,
 .site-footer {
     position: relative;
-    z-index: 1;
+
+    /*
+        Контент выше обоих фоновых слоёв.
+    */
+    z-index: 2;
 }
 
 .site-container {
@@ -800,6 +824,12 @@ a {
     .page {
         --main-bord-height: 720px;
         --main-bord-offset-y: -120px;
+
+        /*
+            Для телефона overlap нужен больше,
+            потому что main_bord.png сильнее масштабируется.
+        */
+        --main-repeat-overlap: 150px;
 
         overflow-x: hidden;
         padding-bottom: 28px;
