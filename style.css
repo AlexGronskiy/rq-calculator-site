@@ -773,12 +773,23 @@ a {
     text-shadow: 0 2px 3px #000;
 }
 
+/* =========================================================
+   MOBILE FIX v2
+   Нормальная мобильная раскладка без налепления слоёв
+   ========================================================= */
+
 @media (max-width: 850px) {
+    html,
+    body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
     body {
         background:
             url("assets/main.png")
             center top
-            / auto 100vh
+            / cover
             no-repeat
             fixed;
 
@@ -787,90 +798,110 @@ a {
     }
 
     .page {
-        --main-bord-height: 760px;
-        --main-bord-offset-y: -140px;
+        --main-bord-height: 720px;
+        --main-bord-offset-y: -120px;
 
         overflow-x: hidden;
         padding-bottom: 28px;
     }
 
     .page::before {
-        background-size: auto 760px;
+        background-size: auto 720px;
         background-position: center top;
-    }
-
-    .page::after {
-        top: var(--main-bord-height);
     }
 
     .site-container,
     .site-footer {
-        width: min(100% - 18px, var(--page-width));
+        width: min(100% - 16px, var(--page-width));
     }
 
     .site-header {
-        min-height: auto;
-        padding-top: 8px;
+        padding-top: 10px;
+    }
+
+    .site-header .site-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
     }
 
     /*
-        На телефоне логотип лучше не держать огромным fixed-слоем,
-        иначе он перекрывает меню и текст.
+        На мобилке логотип НЕ fixed.
+        Иначе он перекрывает nav и контент.
     */
     .hero {
-        position: relative;
-        top: auto;
-        left: auto;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
 
         width: 100%;
         height: auto;
 
         display: flex;
         justify-content: center;
+        align-items: center;
 
-        z-index: 2;
+        margin: 0;
+        z-index: 3;
         pointer-events: auto;
-
-        margin: 0 0 -6px;
     }
 
     .logo-block {
-        width: 132px;
-        padding: 0;
-        margin: 0;
+        width: 128px !important;
+        max-width: 128px !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
 
     .site-logo {
-        width: 132px;
+        width: 128px !important;
+        max-width: 128px !important;
         height: auto;
     }
 
     /*
-        nav.png на телефоне оставляем как декоративную подложку,
-        но делаем её выше, чтобы кнопки спокойно помещались.
+        На телефоне nav.png не растягиваем.
+        Делаем компактную тёмную панель, а сами кнопки остаются картинками.
     */
     .main-nav {
         width: 100%;
-        height: auto;
-        min-height: 168px;
+        max-width: 420px;
 
-        padding: 14px 16px 16px;
+        height: auto;
+        min-height: 0;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding: 10px 10px 12px;
+        margin: 0 auto 4px;
 
         background:
-            url("assets/nav.png")
-            center center
-            / 100% 100%
-            no-repeat;
+            linear-gradient(to bottom, rgba(20, 20, 20, 0.92), rgba(5, 5, 5, 0.96));
+
+        border: 1px solid rgba(180, 150, 90, 0.35);
+        border-radius: 12px;
+
+        box-shadow:
+            0 10px 24px rgba(0, 0, 0, 0.55),
+            inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
 
     .nav-social {
-        position: relative;
-        top: auto;
-        right: auto;
+        position: static !important;
+        top: auto !important;
+        right: auto !important;
 
+        display: flex;
         justify-content: center;
+        align-items: center;
+        gap: 6px;
 
-        margin: 0 auto 10px;
+        margin: 0 0 8px;
+        padding: 0;
+
         z-index: 5;
     }
 
@@ -880,30 +911,33 @@ a {
         height: 31px;
     }
 
-    /*
-        Картинки-кнопки навигации делаем сеткой 2 колонки.
-    */
     .nav-links {
-        position: relative;
-        left: auto;
-        right: auto;
-        bottom: auto;
+        position: static !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
 
+        width: min(100%, 340px);
         height: auto;
 
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 7px 8px;
+        gap: 6px 8px;
 
-        width: min(100%, 360px);
         margin: 0 auto;
     }
 
     .nav-links a {
         width: 100%;
-        height: 31px;
+        height: 30px;
         max-width: none;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
         flex: none;
+        overflow: hidden;
     }
 
     .nav-links a img {
@@ -912,17 +946,20 @@ a {
         object-fit: contain;
     }
 
-    /*
-        Основной контент на телефоне всегда одной колонкой.
-    */
+    .nav-links a:nth-child(5) {
+        grid-column: 1 / -1;
+        width: min(165px, 100%);
+        justify-self: center;
+    }
+
     .content-layout {
+        width: min(100% - 16px, 520px);
+
         display: grid;
         grid-template-columns: 1fr;
         gap: 16px;
 
-        width: min(100% - 18px, 520px);
         margin-top: 14px;
-
         justify-items: stretch;
     }
 
@@ -932,23 +969,15 @@ a {
         gap: 16px;
     }
 
-    /*
-        Правая колонка с long.png становится обычным нижним блоком.
-    */
     .side-column {
         width: 100%;
         min-width: 0;
 
         gap: 16px;
-        padding: 10px 12px 14px;
+        padding: 9px 11px 13px;
 
-        background:
-            url("assets/long.png")
-            center center
-            / 100% 100%
-            no-repeat;
-
-        border-radius: 22px;
+        border-radius: 20px;
+        overflow: visible;
     }
 
     .paper-panel,
@@ -980,7 +1009,14 @@ a {
 
     .panel-body {
         padding: 17px 16px 18px;
+
         font-size: 14px;
+        line-height: 1.45;
+    }
+
+    .paper-panel p,
+    .side-panel p {
+        margin-bottom: 11px;
     }
 
     .feature-list {
@@ -995,10 +1031,6 @@ a {
         top: 6px;
     }
 
-    /*
-        Кнопку скачивания масштабируем под ширину телефона,
-        сохраняя спрайт с hover-частью.
-    */
     .download-side-block {
         min-height: 68px;
         margin: -4px 0;
@@ -1008,9 +1040,6 @@ a {
     .download-image-button {
         width: 268px;
         height: 67px;
-
-        transform: none;
-        transform-origin: center center;
     }
 
     .download-image-button img {
@@ -1023,31 +1052,14 @@ a {
         transform: translate(-335px, -1px);
     }
 
-    /*
-        Донат-блок.
-    */
-    .donate-box {
-        gap: 12px;
-    }
-
     .crypto-summary {
         min-height: 44px;
         padding: 7px 9px;
     }
 
-    .crypto-icon-stack {
-        width: 32px;
-        height: 32px;
-    }
-
-    .crypto-icon-main {
-        width: 28px;
-        height: 28px;
-    }
-
-    .crypto-icon-badge {
-        width: 15px;
-        height: 15px;
+    .crypto-summary-main {
+        gap: 8px;
+        font-size: 13px;
     }
 
     .crypto-content {
@@ -1076,55 +1088,49 @@ a {
         font-size: 12px;
     }
 
-    .copy-toast {
-        top: 46px;
-    }
-
     .site-footer {
+        width: min(100% - 16px, var(--page-width));
         margin-top: 18px;
         padding: 14px 8px;
+
         font-size: 11px;
         line-height: 1.35;
     }
 }
 
 @media (max-width: 520px) {
-    body {
-        background:
-            url("assets/main.png")
-            center top
-            / auto 100vh
-            no-repeat
-            fixed;
-    }
-
     .site-container,
     .site-footer {
         width: min(100% - 12px, var(--page-width));
     }
 
     .logo-block {
-        width: 112px;
-        padding: 0;
+        width: 112px !important;
+        max-width: 112px !important;
     }
 
     .site-logo {
-        width: 112px;
+        width: 112px !important;
+        max-width: 112px !important;
     }
 
     .main-nav {
-        min-height: 186px;
-        padding: 12px 12px 15px;
+        max-width: 360px;
+        padding: 9px 9px 11px;
     }
 
     .nav-links {
-        width: min(100%, 330px);
-        grid-template-columns: 1fr;
-        gap: 5px;
+        width: min(100%, 320px);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 5px 6px;
     }
 
     .nav-links a {
         height: 28px;
+    }
+
+    .nav-links a:nth-child(5) {
+        width: min(155px, 100%);
     }
 
     .content-layout {
@@ -1169,16 +1175,9 @@ a {
 
     .panel-body {
         padding: 15px 13px 16px;
+
         font-size: 13px;
-    }
-
-    .paper-panel p,
-    .side-panel p {
-        margin-bottom: 10px;
-    }
-
-    .feature-list li {
-        padding-left: 17px;
+        line-height: 1.45;
     }
 
     .download-side-block {
@@ -1201,16 +1200,11 @@ a {
     }
 
     .crypto-summary-main {
-        gap: 7px;
         font-size: 13px;
     }
 
     .crypto-summary-main small {
         font-size: 10px;
-    }
-
-    .crypto-arrow {
-        font-size: 17px;
     }
 
     .crypto-meta {
@@ -1220,20 +1214,23 @@ a {
     .copy-address-btn {
         font-size: 11px;
     }
+}
 
-    .copy-icon {
-        width: 13px;
-        height: 13px;
+@media (max-width: 360px) {
+    .main-nav {
+        max-width: 300px;
     }
 
-    .contact-list li {
-        padding: 6px 0;
+    .nav-links {
+        width: min(100%, 230px);
+        grid-template-columns: 1fr;
     }
 
-    .copy-toast {
-        top: 42px;
-        padding: 9px 12px;
-        font-size: 13px;
+    .nav-links a,
+    .nav-links a:nth-child(5) {
+        width: 100%;
+        height: 28px;
+        grid-column: auto;
     }
 }
 
