@@ -97,10 +97,19 @@ a {
     left: 0;
 
     /*
-        Стартуем раньше, чтобы main-repeat.jpg заходил под main_bord.png.
-        Сам main_bord.png при этом НЕ двигается.
+        ВАЖНО:
+        main_bord.png начинается не с 0, а с --main-bord-offset-y.
+        Поэтому repeat должен начинаться от реального нижнего края main_bord:
+        offset + height - overlap.
+
+        Так main_bord остаётся на своём месте относительно main.png,
+        а main-repeat.jpg заходит под него и закрывает шов.
     */
-    top: calc(var(--main-bord-height) - var(--main-repeat-overlap));
+    top: calc(
+        var(--main-bord-offset-y)
+        + var(--main-bord-height)
+        - var(--main-repeat-overlap)
+    );
 
     width: 100%;
     bottom: 0;
@@ -111,10 +120,6 @@ a {
         repeat;
 
     pointer-events: none;
-
-    /*
-        repeat-фон ниже main_bord.png.
-    */
     z-index: 0;
 }
 
